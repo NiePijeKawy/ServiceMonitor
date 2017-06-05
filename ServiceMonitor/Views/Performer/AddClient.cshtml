@@ -1,0 +1,127 @@
+﻿@model ServiceMonitor.Models.Performer.PerformerCreateNewCustomer
+
+@{
+    ViewBag.Title = "AddClient";
+}
+
+<h2>AddClient</h2>
+
+
+<div class="container">
+    <div class="col-xs-12">
+    @using (Html.BeginForm("AddClient"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name, "Imię")
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.LastName, "Nazwisko")
+            @Html.TextBoxFor(x=>x.LastName, new {@class="form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.PhoneNumber, "Numer telefonu")
+            @Html.TextBoxFor(x=>x.PhoneNumber, new {@class="form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.VoivodershipId,"Wojewodzctwo")
+            @Html.DropDownListFor(x=>x.VoivodershipId, new SelectList(Model.Voivoderships,"Id", "DisplayName"),"Wybierz ")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.CountyId,"Powiat")
+            @Html.DropDownListFor(x=>x. CountyId, Enumerable.Empty<SelectListItem>(),"wybierz")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.CommuneId,"Gmina")
+            @Html.DropDownListFor(x=>x.CommuneId, Enumerable.Empty<SelectListItem>(),"Wybierz ")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.LocalityId,"Miejscowość")
+            @Html.DropDownListFor(x=>x.LocalityId, Enumerable.Empty<SelectListItem>(),"Wybierz ")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Street,"Ulica")
+            @Html.TextBoxFor(x => x.Street, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.HouseNumber, "Numer domu/mieszkania")
+            @Html.TextBoxFor(x=>x.HouseNumber, new {@class="form-control"})
+        </div>
+        <button type="submit" class="btn btn-success">Zapisz</button>
+        <button class=" btn btn-warning">@Html.ActionLink("Anuluj","WorkList","Performer")</button>
+        }
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $("#VoivodershipId").change(function() {
+
+            $('#CountyId').empty();
+            $('#CommuneId').empty();
+            $('#LocalityId').empty();
+
+            var value = $("#VoivodershipId").val();
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("GetCounty", "Performer")',
+                data: { idVoivodeship: value },
+                success: function(data) {
+
+                    var tmp = $("#CountyId");
+                    for (var val in data) {
+                        $('<option />', { value: data[val].Id, text: data[val].DisplayName }).appendTo(tmp);
+                    }
+                },
+                error: function(data) { console.log("Error"); }
+            });
+        });
+            
+            $("#CountyId").change(function () {
+
+                $('#CommuneId').empty();
+                $('#LocalityId').empty();
+
+                var value = $("#CountyId").val();
+                console.log(value);
+                $.ajax({
+                    type: 'get',
+                    url: '@Url.Action("GetCommune", "Performer")',
+                    data: { idCounty: value },
+                    success: function (data) {
+
+                        var tmp = $("#CommuneId");
+                        for (var val in data) {
+                            $('<option />', { value: data[val].Id, text: data[val].DisplayName }).appendTo(tmp);
+                        }
+                    },
+                    error: function (data) { console.log("Error"); }
+                });
+            });
+            
+            $("#CommuneId").change(function () {
+
+                $('#LocalityId').empty();
+                var value = $("#CommuneId").val();
+                console.log(value);
+                $.ajax({
+                    type: 'get',
+                    url: '@Url.Action("GetLocality", "Performer")',
+                    data: { idCommune: value },
+                    success: function (data) {
+
+                        var tmp = $("#LocalityId");
+                        for (var val in data) {
+                            $('<option />', { value: data[val].Id, text: data[val].DisplayName }).appendTo(tmp);
+                        }
+                    },
+                    error: function (data) { console.log("Error"); }
+                });
+            });
+            
+        });
+        
+</script>

@@ -1,0 +1,68 @@
+﻿@*@model IEnumerable<ServiceMonitor.Models.ClientServicesDetailsViewModel>*@
+
+@model ServiceMonitor.Models.Client.ClientServicesDetailsModel
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły usługi geodezyjnej</h2>
+
+<div class="container">
+    <h3>Historia zmian usługi</h3>
+    <table class="table">
+        <tr>
+            <th>Lp.</th>
+            <th>Nazwa statusu</th>
+            <th>Od kiedy</th>
+            <th>Do kiedy</th>
+            <th>Opis</th>
+        </tr>
+        @{
+            var i = 1;
+            foreach (var items in Model.State)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>@items.Status</td>
+                    <td>@items.SinceWhen</td>
+                    <td>@items.UntilWhen</td>
+                    <td>@items.Description</td>
+                </tr>
+            }
+        }
+    </table>
+
+</div>
+
+<div class="container col-xs-12" >
+
+    <h3>Dane kontaktowe do ośrodka geodezyjnego</h3>
+    <table>
+        <tr>
+            <th>@Html.LabelFor(x=>x.Info.PODGiK_Name)</th>
+            <th>@Html.LabelFor(x=>x.Info.PhoneNumber)</th>
+            <th>@Html.LabelFor(x=>x.Info.WebSite)</th>
+        </tr>
+        <tr>
+            <td>@Model.Info.PODGiK_Name</td>
+            <td>@Model.Info.PhoneNumber</td>
+            <td>@Model.Info.WebSite</td>
+        </tr>
+    </table>
+
+    <h3>Dane kontaktowe do wykonawcy</h3>
+    <table>
+        <tr>
+            <th>@Html.LabelFor(x=>x.Info.PerformerName)</th>
+            <th>@Html.LabelFor(x=>x.Info.PerformerPhone)</th>
+        </tr>
+        <tr>
+            <td>@Model.Info.PerformerName</td>
+            <td>@Model.Info.PerformerPhone</td>
+        </tr>
+    </table>
+
+
+</div>

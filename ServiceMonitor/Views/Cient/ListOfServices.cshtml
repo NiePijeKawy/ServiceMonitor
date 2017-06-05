@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ServiceMonitor.Models.ClientListServicesViewModel>
+@{
+    ViewBag.Title = "ListOfServices";
+}
+
+<h2>ListOfServices</h2>
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Nazwa usługi</th>
+            <th>Nazwa Firmy</th>
+            <th>Cena</th>
+            <th>Aktualny status</th>
+            <th>Szczegoly</th>
+   
+
+        </tr>
+
+        @{
+            var i = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(i++) </td>
+             @*       <td>@item.Id </td>*@
+                    <td>@item.NameServices </td>
+                    <td>@item.CompanyName </td>
+                    <td>@item.Price </td>
+                    <td>@item.CurrentStatus </td>
+                    <td>
+                         <button class="btn btn-outline-info">@Html.ActionLink("Szczegóły", "Details", "Cient", new {id = item.Id}, null) </button>>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+</div>

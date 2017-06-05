@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SDA_EndProjModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresss">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdVoivodeship" Type="int" Nullable="false" />
+          <Property Name="IdCounty" Type="int" Nullable="false" />
+          <Property Name="IdCommune" Type="int" Nullable="false" />
+          <Property Name="IdLocality" Type="int" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="40" />
+          <Property Name="HouseNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="PlotNumber" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ChangeStageWork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SinceWhen" Type="date" Nullable="false" />
+          <Property Name="UntilWhen" Type="date" />
+          <Property Name="IdWorkStage" Type="int" Nullable="false" />
+          <Property Name="IdService" Type="int" Nullable="false" />
+          <Property Name="Descriptionn" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Commune">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CountyCode" Type="int" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="VoivodeshipCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeodeticPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="IdState" Type="int" />
+        </EntityType>
+        <EntityType Name="Locality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CommuneCode" Type="int" />
+        </EntityType>
+        <EntityType Name="Performer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="22" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PODGiK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Servicee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPerformer" Type="int" Nullable="false" />
+          <Property Name="IdCustomer" Type="int" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Descriptionn" Type="nvarchar(max)" />
+          <Property Name="IdPODGiK" Type="int" Nullable="false" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateOfPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voivodeship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkStage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Addresss_Commune">
+          <End Role="Commune" Type="Self.Commune" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commune">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdCommune" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresss_County">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdCounty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresss_Locality">
+          <End Role="Locality" Type="Self.Locality" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdLocality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresss_Voivodeship">
+          <End Role="Voivodeship" Type="Self.Voivodeship" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voivodeship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdVoivodeship" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeStageWork_Servicee">
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="1" />
+          <End Role="ChangeStageWork" Type="Self.ChangeStageWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChangeStageWork">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeStageWork_WorkStage">
+          <End Role="WorkStage" Type="Self.WorkStage" Multiplicity="1" />
+          <End Role="ChangeStageWork" Type="Self.ChangeStageWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkStage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChangeStageWork">
+              <PropertyRef Name="IdWorkStage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Addresss">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeodeticPoint_StateOfPoint">
+          <End Role="StateOfPoint" Type="Self.StateOfPoint" Multiplicity="0..1" />
+          <End Role="GeodeticPoint" Type="Self.GeodeticPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateOfPoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeodeticPoint">
+              <PropertyRef Name="IdState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Performer_Addresss">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="1" />
+          <End Role="Performer" Type="Self.Performer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Performer">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PODGiK_Addresss">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="1" />
+          <End Role="PODGiK" Type="Self.PODGiK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PODGiK">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_Performer">
+          <End Role="Performer" Type="Self.Performer" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Performer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdPerformer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_PODGiK">
+          <End Role="PODGiK" Type="Self.PODGiK" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PODGiK">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdPODGiK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_TypeService">
+          <End Role="TypeService" Type="Self.TypeService" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SDA_EndProjModelStoreContainer">
+          <EntitySet Name="Addresss" EntityType="Self.Addresss" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangeStageWork" EntityType="Self.ChangeStageWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Commune" EntityType="Self.Commune" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="County" EntityType="Self.County" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeodeticPoint" EntityType="Self.GeodeticPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locality" EntityType="Self.Locality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Performer" EntityType="Self.Performer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PODGiK" EntityType="Self.PODGiK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicee" EntityType="Self.Servicee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateOfPoint" EntityType="Self.StateOfPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeService" EntityType="Self.TypeService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voivodeship" EntityType="Self.Voivodeship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkStage" EntityType="Self.WorkStage" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Addresss_Commune" Association="Self.FK_Addresss_Commune">
+            <End Role="Commune" EntitySet="Commune" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresss_County" Association="Self.FK_Addresss_County">
+            <End Role="County" EntitySet="County" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresss_Locality" Association="Self.FK_Addresss_Locality">
+            <End Role="Locality" EntitySet="Locality" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresss_Voivodeship" Association="Self.FK_Addresss_Voivodeship">
+            <End Role="Voivodeship" EntitySet="Voivodeship" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeStageWork_Servicee" Association="Self.FK_ChangeStageWork_Servicee">
+            <End Role="Servicee" EntitySet="Servicee" />
+            <End Role="ChangeStageWork" EntitySet="ChangeStageWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeStageWork_WorkStage" Association="Self.FK_ChangeStageWork_WorkStage">
+            <End Role="WorkStage" EntitySet="WorkStage" />
+            <End Role="ChangeStageWork" EntitySet="ChangeStageWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Addresss" Association="Self.FK_Customer_Addresss">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeodeticPoint_StateOfPoint" Association="Self.FK_GeodeticPoint_StateOfPoint">
+            <End Role="StateOfPoint" EntitySet="StateOfPoint" />
+            <End Role="GeodeticPoint" EntitySet="GeodeticPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Performer_Addresss" Association="Self.FK_Performer_Addresss">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Performer" EntitySet="Performer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PODGiK_Addresss" Association="Self.FK_PODGiK_Addresss">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="PODGiK" EntitySet="PODGiK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_Customer" Association="Self.FK_Servicee_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_Performer" Association="Self.FK_Servicee_Performer">
+            <End Role="Performer" EntitySet="Performer" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_PODGiK" Association="Self.FK_Servicee_PODGiK">
+            <End Role="PODGiK" EntitySet="PODGiK" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_TypeService" Association="Self.FK_Servicee_TypeService">
+            <End Role="TypeService" EntitySet="TypeService" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SDA_EndProjModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Addresss">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVoivodeship" Type="Int32" Nullable="false" />
+          <Property Name="IdCounty" Type="Int32" Nullable="false" />
+          <Property Name="IdCommune" Type="Int32" Nullable="false" />
+          <Property Name="IdLocality" Type="Int32" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="HouseNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PlotNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Commune" Relationship="Self.FK_Addresss_Commune" FromRole="Addresss" ToRole="Commune" />
+          <NavigationProperty Name="County" Relationship="Self.FK_Addresss_County" FromRole="Addresss" ToRole="County" />
+          <NavigationProperty Name="Locality" Relationship="Self.FK_Addresss_Locality" FromRole="Addresss" ToRole="Locality" />
+          <NavigationProperty Name="Voivodeship" Relationship="Self.FK_Addresss_Voivodeship" FromRole="Addresss" ToRole="Voivodeship" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Customer_Addresss" FromRole="Addresss" ToRole="Customer" />
+          <NavigationProperty Name="Performer" Relationship="Self.FK_Performer_Addresss" FromRole="Addresss" ToRole="Performer" />
+          <NavigationProperty Name="PODGiK" Relationship="Self.FK_PODGiK_Addresss" FromRole="Addresss" ToRole="PODGiK" />
+        </EntityType>
+        <EntityType Name="ChangeStageWork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SinceWhen" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UntilWhen" Type="DateTime" Precision="0" />
+          <Property Name="IdWorkStage" Type="Int32" Nullable="false" />
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="Descriptionn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Servicee" Relationship="Self.FK_ChangeStageWork_Servicee" FromRole="ChangeStageWork" ToRole="Servicee" />
+          <NavigationProperty Name="WorkStage" Relationship="Self.FK_ChangeStageWork_WorkStage" FromRole="ChangeStageWork" ToRole="WorkStage" />
+        </EntityType>
+        <EntityType Name="Commune">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountyCode" Type="Int32" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_Commune" FromRole="Commune" ToRole="Addresss" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VoivodeshipCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_County" FromRole="County" ToRole="Addresss" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK_Customer_Addresss" FromRole="Customer" ToRole="Addresss" />
+          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_Customer" FromRole="Customer" ToRole="Servicee" />
+        </EntityType>
+        <EntityType Name="GeodeticPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="X" Type="Double" Nullable="false" />
+          <Property Name="Y" Type="Double" Nullable="false" />
+          <Property Name="IdState" Type="Int32" />
+          <NavigationProperty Name="StateOfPoint" Relationship="Self.FK_GeodeticPoint_StateOfPoint" FromRole="GeodeticPoint" ToRole="StateOfPoint" />
+        </EntityType>
+        <EntityType Name="Locality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommuneCode" Type="Int32" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_Locality" FromRole="Locality" ToRole="Addresss" />
+        </EntityType>
+        <EntityType Name="Performer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="22" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK_Performer_Addresss" FromRole="Performer" ToRole="Addresss" />
+          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_Performer" FromRole="Performer" ToRole="Servicee" />
+        </EntityType>
+        <EntityType Name="PODGiK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="WebSite" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK_PODGiK_Addresss" FromRole="PODGiK" ToRole="Addresss" />
+          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_PODGiK" FromRole="PODGiK" ToRole="Servicee" />
+        </EntityType>
+        <EntityType Name="Servicee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPerformer" Type="Int32" Nullable="false" />
+          <Property Name="IdCustomer" Type="Int32" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Descriptionn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPODGiK" Type="Int32" Nullable="false" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChangeStageWork" Relationship="Self.FK_ChangeStageWork_Servicee" FromRole="Servicee" ToRole="ChangeStageWork" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Servicee_Customer" FromRole="Servicee" ToRole="Customer" />
+          <NavigationProperty Name="Performer" Relationship="Self.FK_Servicee_Performer" FromRole="Servicee" ToRole="Performer" />
+          <NavigationProperty Name="PODGiK" Relationship="Self.FK_Servicee_PODGiK" FromRole="Servicee" ToRole="PODGiK" />
+          <NavigationProperty Name="TypeService" Relationship="Self.FK_Servicee_TypeService" FromRole="Servicee" ToRole="TypeService" />
+        </EntityType>
+        <EntityType Name="StateOfPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GeodeticPoint" Relationship="Self.FK_GeodeticPoint_StateOfPoint" FromRole="StateOfPoint" ToRole="GeodeticPoint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_TypeService" FromRole="TypeService" ToRole="Servicee" />
+        </EntityType>
+        <EntityType Name="Voivodeship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_Voivodeship" FromRole="Voivodeship" ToRole="Addresss" />
+        </EntityType>
+        <EntityType Name="WorkStage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ChangeStageWork" Relationship="Self.FK_ChangeStageWork_WorkStage" FromRole="WorkStage" ToRole="ChangeStageWork" />
+        </EntityType>
+        <Association Name="FK_Addresss_Commune">
+          <End Role="Commune" Type="Self.Commune" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commune">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdCommune" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresss_County">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdCounty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresss_Locality">
+          <End Role="Locality" Type="Self.Locality" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdLocality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresss_Voivodeship">
+          <End Role="Voivodeship" Type="Self.Voivodeship" Multiplicity="1" />
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voivodeship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresss">
+              <PropertyRef Name="IdVoivodeship" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Addresss">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Performer_Addresss">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="1" />
+          <End Role="Performer" Type="Self.Performer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Performer">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PODGiK_Addresss">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="1" />
+          <End Role="PODGiK" Type="Self.PODGiK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PODGiK">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeStageWork_Servicee">
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="1" />
+          <End Role="ChangeStageWork" Type="Self.ChangeStageWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChangeStageWork">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeStageWork_WorkStage">
+          <End Role="WorkStage" Type="Self.WorkStage" Multiplicity="1" />
+          <End Role="ChangeStageWork" Type="Self.ChangeStageWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkStage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChangeStageWork">
+              <PropertyRef Name="IdWorkStage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeodeticPoint_StateOfPoint">
+          <End Role="StateOfPoint" Type="Self.StateOfPoint" Multiplicity="0..1" />
+          <End Role="GeodeticPoint" Type="Self.GeodeticPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateOfPoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeodeticPoint">
+              <PropertyRef Name="IdState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_Performer">
+          <End Role="Performer" Type="Self.Performer" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Performer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdPerformer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_PODGiK">
+          <End Role="PODGiK" Type="Self.PODGiK" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PODGiK">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdPODGiK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicee_TypeService">
+          <End Role="TypeService" Type="Self.TypeService" Multiplicity="1" />
+          <End Role="Servicee" Type="Self.Servicee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servicee">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SDA_EndProjContext1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresss" EntityType="Self.Addresss" />
+          <EntitySet Name="ChangeStageWork" EntityType="Self.ChangeStageWork" />
+          <EntitySet Name="Commune" EntityType="Self.Commune" />
+          <EntitySet Name="County" EntityType="Self.County" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="GeodeticPoint" EntityType="Self.GeodeticPoint" />
+          <EntitySet Name="Locality" EntityType="Self.Locality" />
+          <EntitySet Name="Performer" EntityType="Self.Performer" />
+          <EntitySet Name="PODGiK" EntityType="Self.PODGiK" />
+          <EntitySet Name="Servicee" EntityType="Self.Servicee" />
+          <EntitySet Name="StateOfPoint" EntityType="Self.StateOfPoint" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeService" EntityType="Self.TypeService" />
+          <EntitySet Name="Voivodeship" EntityType="Self.Voivodeship" />
+          <EntitySet Name="WorkStage" EntityType="Self.WorkStage" />
+          <AssociationSet Name="FK_Addresss_Commune" Association="Self.FK_Addresss_Commune">
+            <End Role="Commune" EntitySet="Commune" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresss_County" Association="Self.FK_Addresss_County">
+            <End Role="County" EntitySet="County" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresss_Locality" Association="Self.FK_Addresss_Locality">
+            <End Role="Locality" EntitySet="Locality" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresss_Voivodeship" Association="Self.FK_Addresss_Voivodeship">
+            <End Role="Voivodeship" EntitySet="Voivodeship" />
+            <End Role="Addresss" EntitySet="Addresss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Addresss" Association="Self.FK_Customer_Addresss">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Performer_Addresss" Association="Self.FK_Performer_Addresss">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Performer" EntitySet="Performer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PODGiK_Addresss" Association="Self.FK_PODGiK_Addresss">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="PODGiK" EntitySet="PODGiK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeStageWork_Servicee" Association="Self.FK_ChangeStageWork_Servicee">
+            <End Role="Servicee" EntitySet="Servicee" />
+            <End Role="ChangeStageWork" EntitySet="ChangeStageWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeStageWork_WorkStage" Association="Self.FK_ChangeStageWork_WorkStage">
+            <End Role="WorkStage" EntitySet="WorkStage" />
+            <End Role="ChangeStageWork" EntitySet="ChangeStageWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_Customer" Association="Self.FK_Servicee_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeodeticPoint_StateOfPoint" Association="Self.FK_GeodeticPoint_StateOfPoint">
+            <End Role="StateOfPoint" EntitySet="StateOfPoint" />
+            <End Role="GeodeticPoint" EntitySet="GeodeticPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_Performer" Association="Self.FK_Servicee_Performer">
+            <End Role="Performer" EntitySet="Performer" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_PODGiK" Association="Self.FK_Servicee_PODGiK">
+            <End Role="PODGiK" EntitySet="PODGiK" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicee_TypeService" Association="Self.FK_Servicee_TypeService">
+            <End Role="TypeService" EntitySet="TypeService" />
+            <End Role="Servicee" EntitySet="Servicee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SDA_EndProjModelStoreContainer" CdmEntityContainer="SDA_EndProjContext1">
+          <EntitySetMapping Name="Addresss">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.Addresss">
+              <MappingFragment StoreEntitySet="Addresss">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdVoivodeship" ColumnName="IdVoivodeship" />
+                <ScalarProperty Name="IdCounty" ColumnName="IdCounty" />
+                <ScalarProperty Name="IdCommune" ColumnName="IdCommune" />
+                <ScalarProperty Name="IdLocality" ColumnName="IdLocality" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="PlotNumber" ColumnName="PlotNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangeStageWork">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.ChangeStageWork">
+              <MappingFragment StoreEntitySet="ChangeStageWork">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SinceWhen" ColumnName="SinceWhen" />
+                <ScalarProperty Name="UntilWhen" ColumnName="UntilWhen" />
+                <ScalarProperty Name="IdWorkStage" ColumnName="IdWorkStage" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="Descriptionn" ColumnName="Descriptionn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Commune">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.Commune">
+              <MappingFragment StoreEntitySet="Commune">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountyCode" ColumnName="CountyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="County">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.County">
+              <MappingFragment StoreEntitySet="County">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="VoivodeshipCode" ColumnName="VoivodeshipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeodeticPoint">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.GeodeticPoint">
+              <MappingFragment StoreEntitySet="GeodeticPoint">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="IdState" ColumnName="IdState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locality">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.Locality">
+              <MappingFragment StoreEntitySet="Locality">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CommuneCode" ColumnName="CommuneCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Performer">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.Performer">
+              <MappingFragment StoreEntitySet="Performer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PODGiK">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.PODGiK">
+              <MappingFragment StoreEntitySet="PODGiK">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicee">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.Servicee">
+              <MappingFragment StoreEntitySet="Servicee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdPerformer" ColumnName="IdPerformer" />
+                <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Descriptionn" ColumnName="Descriptionn" />
+                <ScalarProperty Name="IdPODGiK" ColumnName="IdPODGiK" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateOfPoint">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.StateOfPoint">
+              <MappingFragment StoreEntitySet="StateOfPoint">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeService">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.TypeService">
+              <MappingFragment StoreEntitySet="TypeService">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voivodeship">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.Voivodeship">
+              <MappingFragment StoreEntitySet="Voivodeship">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkStage">
+            <EntityTypeMapping TypeName="SDA_EndProjModel.WorkStage">
+              <MappingFragment StoreEntitySet="WorkStage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

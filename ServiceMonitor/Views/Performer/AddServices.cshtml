@@ -1,0 +1,19 @@
+﻿@model ServiceMonitor.Models.Performer.PerformerAddNewService
+
+@{
+    ViewBag.Title = "AddServices";
+}
+
+<h2>AddServices</h2>
+
+
+<div class="container">
+    @using (Html.BeginForm("AddServices"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(x=>x.IdCustomer,"Klient")
+            @Html.DropDownListFor(x=>x.IdCustomer, new SelectList(Model.Customers,"Id","DisplayName"),"Wybierz")
+        </div>
+    }
+
+</div>

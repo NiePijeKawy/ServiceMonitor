@@ -1,0 +1,34 @@
+﻿@model ServiceMonitor.Models.ClientGridViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Index"))
+    {
+        <div class="col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(x=>x.Name, "Imię")
+                @Html.TextBoxFor(x=>x.Name, new { @class="form-control"})
+                @Html.ValidationMessageFor(x=>x.Name)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x=>x.LastName, "Nazwisko")
+                @Html.TextBoxFor(x=>x.LastName, new { @class="form-control"})
+                @Html.ValidationMessageFor(x => x.LastName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x=>x.PhoneNumber, "Numer telefonu")
+                @Html.TextBoxFor(x=>x.PhoneNumber, new { @class="form-control"})
+                @Html.ValidationMessageFor(x => x.PhoneNumber)
+            </div>
+            <button type="submit" class="btn btn-info">Sprawdz swoje usługi</button>
+            @Html.ValidationSummary()
+        </div>
+    }
+
+</div>
+
+<h2>Index</h2>
+

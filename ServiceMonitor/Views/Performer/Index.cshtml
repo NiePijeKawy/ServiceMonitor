@@ -1,0 +1,32 @@
+﻿@model ServiceMonitor.Models.Performer.PerformerWelcomeViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<h3>Witaj geodeto, aby kontynuować zaloguj się</h3>
+
+<div class="row">
+    @using (Html.BeginForm("Index"))
+    {
+        <div class="col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(x=>x.Login,"Idetyfikator");
+                @Html.TextBoxFor(x=>x.Login, new {@class="form-control"})
+                @Html.ValidationMessageFor(x=>x.Login)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x=>x.Password, "Haslo");
+                @Html.PasswordFor(x=>x.Password);
+                @Html.ValidationMessageFor(x=>x.Password)
+            </div>
+            <button type="submit" class="btn btn-info"> Zaloguj sie</button>
+            <button class="btn"> @Html.ActionLink("Zarejestruj się", "Registration", "Performer")</button>
+                @Html.ValidationSummary();
+        </div>
+        
+    }
+
+
+</div>
+
+

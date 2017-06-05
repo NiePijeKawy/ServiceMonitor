@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ServiceMonitor.Models.Performer.PerformerGenerelListServices>
+@{
+    ViewBag.Title = "WorkList";
+}
+
+<h2>WorkList</h2>
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Numer telefonu</th>
+            <th>Rodzaj usługi</th>
+            <th>Cena</th>
+            <th>Aktualny status</th>
+        </tr>
+        
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CustomerName</td>
+                    <td>@item.CustomerLastName</td>
+                    <td>@item.CustomerPhoneNumber</td>
+                    <td>@item.KindWork</td>
+                    <td>@item.Price</td>
+                    <td>@item.CurrentStatus</td>
+                    <td>
+                        <button>@Html.ActionLink("edycja", "Edit", "Performer", new {id=item.Id},null ) </button>
+                    </td>
+                    <td>
+                        <button>@Html.ActionLink("usuń", "Delete", "Performer", new { id = item.Id }, null) </button>
+                    </td>
+                    <td>
+                        <button>@Html.ActionLink("szczególy", "Edit", "Performer", new { id = item.Id }, null) </button>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <button class="btn"> @Html.ActionLink("Dodaj nowego klienta","AddClient","Performer")</button>
+    <button class="btn"> @Html.ActionLink("Dodaj nową usługę","AddServices","Performer")</button>
+
+
+
+</div>
+
