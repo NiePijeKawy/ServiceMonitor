@@ -17,13 +17,13 @@ namespace ServiceMonitor
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TypeService()
         {
-            this.Servicee = new HashSet<Servicee>();
+            this.Servicees = new HashSet<Servicee>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servicee> Servicee { get; set; }
+        public virtual ICollection<Servicee> Servicees { get; set; }
     }
 }

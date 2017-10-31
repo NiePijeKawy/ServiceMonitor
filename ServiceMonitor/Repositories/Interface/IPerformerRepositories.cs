@@ -19,5 +19,14 @@ namespace ServiceMonitor.Repositories.Interface
         IEnumerable<IdNameViewModel> GetPODGiKs();
         IEnumerable<IdNameViewModel> GetTypesList();
         IEnumerable<IdNameViewModel> GetCustomerList();
+        PerformerEditViewModel GetWorkState(int id);
+        string FindUser(string userLogin);
+        PerformerWelcomeViewModel AuthenticateUser(PerformerWelcomeViewModel model);
+        bool ServiceIsExist(PerformerAddNewService model);
+        void SaveNewService(PerformerAddNewService model);
+        void DeleteWork(int id);
+        PerformerDetailsInfo Details(int id);
+        IEnumerable<PerformerDetailsWorkState> GetDetailsWorkList(int id);
+        void SaveChangeWorkState(PerformerEditViewModel model);
     }
 }

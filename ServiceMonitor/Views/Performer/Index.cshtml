@@ -2,31 +2,41 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-<h3>Witaj geodeto, aby kontynuować zaloguj się</h3>
-
-<div class="row">
-    @using (Html.BeginForm("Index"))
-    {
-        <div class="col-xs-12">
-            <div class="form-group">
-                @Html.LabelFor(x=>x.Login,"Idetyfikator");
-                @Html.TextBoxFor(x=>x.Login, new {@class="form-control"})
-                @Html.ValidationMessageFor(x=>x.Login)
+<h3 style="margin-left:30%; margin-top:5%; font-family: 'Palatino Linotype';font-style: italic;">Witaj geodeto, aby kontynuować zaloguj się</h3>
+<div style="margin-left:50%; margin-top:10%">
+    <div class="row" >
+        @using (Html.BeginForm("Index"))
+        {
+            <div class="col-xs-12">
+                <div class="form-group" >
+                    @Html.LabelFor(x=>x.Login,"Idetyfikator", new {style = "font-weight: bold;"})
+                    @Html.EditorFor(x => x.Login, new { htmlAttributes = new { @class = "form-control", style = "background-color:transparent; font-weight: bold; color:black; border: 1px solid black;" }})
+        @*            @Html.EditorFor(x => x.Login, new { htmlAttributes = new { @class = "form-control", style = "background-color:transparent; font-weight: bold; color:black; border: 1px solid black;" } });*@
+                    @Html.ValidationMessageFor(x => x.Login, null, new { style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x=>x.Password, "Haslo", new { style = "font-weight: bold;" })
+                    @Html.EditorFor(x=>x.Password, new { htmlAttributes = new { @class = "form-control transparent" }})
+                    @Html.ValidationMessageFor(x => x.Password, null, new { style = "color:red" })
+                </div>
+                <button type="submit" class="btn transparent"> Zaloguj sie</button>
+                <button class="btn transparent"> @Html.ActionLink("Zarejestruj się", "Registration", "Performer", new { style = "color:black" })</button>
+                    @Html.ValidationSummary(null, new { style = "color:red"})
             </div>
-            <div class="form-group">
-                @Html.LabelFor(x=>x.Password, "Haslo");
-                @Html.PasswordFor(x=>x.Password);
-                @Html.ValidationMessageFor(x=>x.Password)
-            </div>
-            <button type="submit" class="btn btn-info"> Zaloguj sie</button>
-            <button class="btn"> @Html.ActionLink("Zarejestruj się", "Registration", "Performer")</button>
-                @Html.ValidationSummary();
-        </div>
         
-    }
-
-
+        }
+    </div>
 </div>
 
+@*style="top:40%; left:30%;width:auto; height:auto; margin:auto"*@
 
+@*<style>
+    .transparent {
+        background-color: transparent;
+        font-weight: bold;
+        color: black;
+        border: 1px solid black;
+    }
+</style>*@

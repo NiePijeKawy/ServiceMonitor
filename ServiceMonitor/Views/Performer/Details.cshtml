@@ -1,0 +1,80 @@
+﻿@using ServiceMonitor.Models.Performer
+@model PerformerDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<h2>Szczegóły usługi geodezyjnej</h2>
+<h3>@Model.Info.NameOfService </h3>
+<h4>Cena @Model.Info.CostService</h4>
+
+<div class="container">
+    <h3>Historia zmian usługi</h3>
+    <table class="table">
+        <tr>
+            <th>Lp.</th>
+            <th>Nazwa statusu</th>
+            <th>Od kiedy</th>
+            <th>Do kiedy</th>
+            <th>Opis</th>
+        </tr>
+        @{
+            var i = 1;
+            foreach (var items in Model.WorkState)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>@items.Status</td>
+                    <td>@items.SinceWhen</td>
+                    <td>@items.UntilWhen</td>
+                    <td>@items.Description</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div>
+    <div>
+        Adres przedmiotu pracy geodezyjnej
+        <ul>
+            <li>@Model.Info.PlotVoivodeship</li>
+            <li>@Model.Info.PlotCounty</li>
+            <li>@Model.Info.PlotCommune</li>
+            <li>@Model.Info.PlotLocality</li>
+            <li>@Model.Info.PlotNumber</li>
+        </ul>
+    </div>
+    <div>
+        Dane Klienta
+        <ul>
+            <li>@Model.Info.CustomerFullName</li>
+            <li>@Model.Info.CustomerPhoneNumber</li>
+            <li>@Model.Info.CustomerVoivodeship</li>
+            <li>@Model.Info.CustomerCounty</li>
+            <li>@Model.Info.CustomerCommune</li>
+            <li>@Model.Info.CustomerLocality</li>
+            <li>@Model.Info.CustomerFullStreet</li>
+        </ul>
+    </div>
+    <div>
+        Dane PODGiK
+        <ul>
+            <li>@Model.Info.PODGiK_Name</li>
+            <li>@Model.Info.PODGiK_WebSite</li>
+            <li>@Model.Info.PODGiK_PhoneNumber</li>
+            <li>@Model.Info.PODGiK_Voivodeship</li>
+            <li>@Model.Info.PODGiK_County</li>
+            <li>@Model.Info.PODGiK_Commune</li>
+            <li>@Model.Info.PODGiK_Locality</li>
+            <li>@Model.Info.PODGiK_FullStreet</li>
+        </ul>
+
+    </div>
+</div>
+<div>
+    <button>@Html.ActionLink("Wróć", "WorkList2", "Performer")</button>
+</div>

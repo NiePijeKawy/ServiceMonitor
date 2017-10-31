@@ -14,6 +14,7 @@ namespace ServiceMonitor.Models.Performer
 
         [Required]
         [PasswordPropertyText]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

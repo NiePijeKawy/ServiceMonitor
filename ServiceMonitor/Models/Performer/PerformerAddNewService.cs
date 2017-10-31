@@ -10,6 +10,9 @@ namespace ServiceMonitor.Models.Performer
     {
         public int Id { get; set; }
 
+        public int IdPerformer { get; set; }
+        public string LoginPerformer { get; set; }
+
         public int IdCustomer { get; set; }
 
         public IEnumerable<IdNameViewModel> Customers { get; set; }
@@ -40,7 +43,7 @@ namespace ServiceMonitor.Models.Performer
         public IEnumerable<IdNameViewModel> Commune { get; set; }
 
         [Required]
-        public int LocalityId { get; set; }
+        public int IdLocality { get; set; }
 
         public IEnumerable<IdNameViewModel> Locality { get; set; }
         
@@ -49,6 +52,8 @@ namespace ServiceMonitor.Models.Performer
         [Required]
         public string PlotNumber { get; set; }
 
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
 
     }
 }

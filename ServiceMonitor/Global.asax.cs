@@ -9,6 +9,8 @@ using Castle.Windsor;
 using Castle.Windsor.Installer;
 using ServiceMonitor.Repositories;
 using ServiceMonitor.Infrastructure;
+using System.Web.Http;
+using System.Web.Http.Dispatcher;
 
 namespace ServiceMonitor
 {
@@ -17,6 +19,8 @@ namespace ServiceMonitor
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -41,6 +45,8 @@ namespace ServiceMonitor
             var controlleFactory = new WindsorControllerFactory(_container.Kernel);
 
             ControllerBuilder.Current.SetControllerFactory(controlleFactory);
+
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new WindsorHttpControllerFactory(_container));  // ApiController        
         }
     }
 }

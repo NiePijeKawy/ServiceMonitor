@@ -30,7 +30,11 @@
                         <button>@Html.ActionLink("edycja", "Edit", "Performer", new {id=item.Id},null ) </button>
                     </td>
                     <td>
-                        <button>@Html.ActionLink("usuń", "Delete", "Performer", new { id = item.Id }, null) </button>
+                        @using (Html.BeginForm("Delete", "Performer"))
+                        {
+                            @Html.Hidden("id", @item.Id);
+                            <button type="submit" class="btn btn-success">Usuń </button> 
+                        }                       
                     </td>
                     <td>
                         <button>@Html.ActionLink("szczególy", "Edit", "Performer", new { id = item.Id }, null) </button>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SDA_EndProjModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MVC4DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Addresss">
           <Key>
             <PropertyRef Name="Id" />
@@ -115,16 +115,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TypeService">
           <Key>
             <PropertyRef Name="Id" />
@@ -314,7 +304,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SDA_EndProjModelStoreContainer">
+        <EntityContainer Name="MVC4DataBaseModelStoreContainer">
           <EntitySet Name="Addresss" EntityType="Self.Addresss" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChangeStageWork" EntityType="Self.ChangeStageWork" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Commune" EntityType="Self.Commune" Schema="dbo" store:Type="Tables" />
@@ -326,7 +316,6 @@
           <EntitySet Name="PODGiK" EntityType="Self.PODGiK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servicee" EntityType="Self.Servicee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateOfPoint" EntityType="Self.StateOfPoint" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeService" EntityType="Self.TypeService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voivodeship" EntityType="Self.Voivodeship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkStage" EntityType="Self.WorkStage" Schema="dbo" store:Type="Tables" />
@@ -391,7 +380,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SDA_EndProjModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MVC4DataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Addresss">
           <Key>
             <PropertyRef Name="Id" />
@@ -408,9 +397,9 @@
           <NavigationProperty Name="County" Relationship="Self.FK_Addresss_County" FromRole="Addresss" ToRole="County" />
           <NavigationProperty Name="Locality" Relationship="Self.FK_Addresss_Locality" FromRole="Addresss" ToRole="Locality" />
           <NavigationProperty Name="Voivodeship" Relationship="Self.FK_Addresss_Voivodeship" FromRole="Addresss" ToRole="Voivodeship" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Customer_Addresss" FromRole="Addresss" ToRole="Customer" />
-          <NavigationProperty Name="Performer" Relationship="Self.FK_Performer_Addresss" FromRole="Addresss" ToRole="Performer" />
-          <NavigationProperty Name="PODGiK" Relationship="Self.FK_PODGiK_Addresss" FromRole="Addresss" ToRole="PODGiK" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Addresss" FromRole="Addresss" ToRole="Customer" />
+          <NavigationProperty Name="Performers" Relationship="Self.FK_Performer_Addresss" FromRole="Addresss" ToRole="Performer" />
+          <NavigationProperty Name="PODGiKs" Relationship="Self.FK_PODGiK_Addresss" FromRole="Addresss" ToRole="PODGiK" />
         </EntityType>
         <EntityType Name="ChangeStageWork">
           <Key>
@@ -432,7 +421,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CountyCode" Type="Int32" />
-          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_Commune" FromRole="Commune" ToRole="Addresss" />
+          <NavigationProperty Name="Addressses" Relationship="Self.FK_Addresss_Commune" FromRole="Commune" ToRole="Addresss" />
         </EntityType>
         <EntityType Name="County">
           <Key>
@@ -441,7 +430,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="VoivodeshipCode" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_County" FromRole="County" ToRole="Addresss" />
+          <NavigationProperty Name="Addressses" Relationship="Self.FK_Addresss_County" FromRole="County" ToRole="Addresss" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -453,7 +442,7 @@
           <Property Name="IdAddress" Type="Int32" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Addresss" Relationship="Self.FK_Customer_Addresss" FromRole="Customer" ToRole="Addresss" />
-          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_Customer" FromRole="Customer" ToRole="Servicee" />
+          <NavigationProperty Name="Servicees" Relationship="Self.FK_Servicee_Customer" FromRole="Customer" ToRole="Servicee" />
         </EntityType>
         <EntityType Name="GeodeticPoint">
           <Key>
@@ -474,7 +463,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CommuneCode" Type="Int32" />
-          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_Locality" FromRole="Locality" ToRole="Addresss" />
+          <NavigationProperty Name="Addressses" Relationship="Self.FK_Addresss_Locality" FromRole="Locality" ToRole="Addresss" />
         </EntityType>
         <EntityType Name="Performer">
           <Key>
@@ -487,7 +476,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Addresss" Relationship="Self.FK_Performer_Addresss" FromRole="Performer" ToRole="Addresss" />
-          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_Performer" FromRole="Performer" ToRole="Servicee" />
+          <NavigationProperty Name="Servicees" Relationship="Self.FK_Servicee_Performer" FromRole="Performer" ToRole="Servicee" />
         </EntityType>
         <EntityType Name="PODGiK">
           <Key>
@@ -499,7 +488,7 @@
           <Property Name="WebSite" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Addresss" Relationship="Self.FK_PODGiK_Addresss" FromRole="PODGiK" ToRole="Addresss" />
-          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_PODGiK" FromRole="PODGiK" ToRole="Servicee" />
+          <NavigationProperty Name="Servicees" Relationship="Self.FK_Servicee_PODGiK" FromRole="PODGiK" ToRole="Servicee" />
         </EntityType>
         <EntityType Name="Servicee">
           <Key>
@@ -513,7 +502,7 @@
           <Property Name="Descriptionn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdPODGiK" Type="Int32" Nullable="false" />
           <Property Name="IdAddress" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ChangeStageWork" Relationship="Self.FK_ChangeStageWork_Servicee" FromRole="Servicee" ToRole="ChangeStageWork" />
+          <NavigationProperty Name="ChangeStageWorks" Relationship="Self.FK_ChangeStageWork_Servicee" FromRole="Servicee" ToRole="ChangeStageWork" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Servicee_Customer" FromRole="Servicee" ToRole="Customer" />
           <NavigationProperty Name="Performer" Relationship="Self.FK_Servicee_Performer" FromRole="Servicee" ToRole="Performer" />
           <NavigationProperty Name="PODGiK" Relationship="Self.FK_Servicee_PODGiK" FromRole="Servicee" ToRole="PODGiK" />
@@ -525,17 +514,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="GeodeticPoint" Relationship="Self.FK_GeodeticPoint_StateOfPoint" FromRole="StateOfPoint" ToRole="GeodeticPoint" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="GeodeticPoints" Relationship="Self.FK_GeodeticPoint_StateOfPoint" FromRole="StateOfPoint" ToRole="GeodeticPoint" />
         </EntityType>
         <EntityType Name="TypeService">
           <Key>
@@ -543,7 +522,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Servicee" Relationship="Self.FK_Servicee_TypeService" FromRole="TypeService" ToRole="Servicee" />
+          <NavigationProperty Name="Servicees" Relationship="Self.FK_Servicee_TypeService" FromRole="TypeService" ToRole="Servicee" />
         </EntityType>
         <EntityType Name="Voivodeship">
           <Key>
@@ -551,7 +530,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Addresss" Relationship="Self.FK_Addresss_Voivodeship" FromRole="Voivodeship" ToRole="Addresss" />
+          <NavigationProperty Name="Addressses" Relationship="Self.FK_Addresss_Voivodeship" FromRole="Voivodeship" ToRole="Addresss" />
         </EntityType>
         <EntityType Name="WorkStage">
           <Key>
@@ -559,7 +538,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ChangeStageWork" Relationship="Self.FK_ChangeStageWork_WorkStage" FromRole="WorkStage" ToRole="ChangeStageWork" />
+          <NavigationProperty Name="ChangeStageWorks" Relationship="Self.FK_ChangeStageWork_WorkStage" FromRole="WorkStage" ToRole="ChangeStageWork" />
         </EntityType>
         <Association Name="FK_Addresss_Commune">
           <End Role="Commune" Type="Self.Commune" Multiplicity="1" />
@@ -729,77 +708,76 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SDA_EndProjContext1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Addresss" EntityType="Self.Addresss" />
-          <EntitySet Name="ChangeStageWork" EntityType="Self.ChangeStageWork" />
-          <EntitySet Name="Commune" EntityType="Self.Commune" />
-          <EntitySet Name="County" EntityType="Self.County" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" />
-          <EntitySet Name="GeodeticPoint" EntityType="Self.GeodeticPoint" />
-          <EntitySet Name="Locality" EntityType="Self.Locality" />
-          <EntitySet Name="Performer" EntityType="Self.Performer" />
-          <EntitySet Name="PODGiK" EntityType="Self.PODGiK" />
-          <EntitySet Name="Servicee" EntityType="Self.Servicee" />
-          <EntitySet Name="StateOfPoint" EntityType="Self.StateOfPoint" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TypeService" EntityType="Self.TypeService" />
-          <EntitySet Name="Voivodeship" EntityType="Self.Voivodeship" />
-          <EntitySet Name="WorkStage" EntityType="Self.WorkStage" />
+        <EntityContainer Name="MVC4DataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addressses" EntityType="Self.Addresss" />
+          <EntitySet Name="ChangeStageWorks" EntityType="Self.ChangeStageWork" />
+          <EntitySet Name="Communes" EntityType="Self.Commune" />
+          <EntitySet Name="Counties" EntityType="Self.County" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="GeodeticPoints" EntityType="Self.GeodeticPoint" />
+          <EntitySet Name="Localities" EntityType="Self.Locality" />
+          <EntitySet Name="Performers" EntityType="Self.Performer" />
+          <EntitySet Name="PODGiKs" EntityType="Self.PODGiK" />
+          <EntitySet Name="Servicees" EntityType="Self.Servicee" />
+          <EntitySet Name="StateOfPoints" EntityType="Self.StateOfPoint" />
+          <EntitySet Name="TypeServices" EntityType="Self.TypeService" />
+          <EntitySet Name="Voivodeships" EntityType="Self.Voivodeship" />
+          <EntitySet Name="WorkStages" EntityType="Self.WorkStage" />
           <AssociationSet Name="FK_Addresss_Commune" Association="Self.FK_Addresss_Commune">
-            <End Role="Commune" EntitySet="Commune" />
-            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Commune" EntitySet="Communes" />
+            <End Role="Addresss" EntitySet="Addressses" />
           </AssociationSet>
           <AssociationSet Name="FK_Addresss_County" Association="Self.FK_Addresss_County">
-            <End Role="County" EntitySet="County" />
-            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="County" EntitySet="Counties" />
+            <End Role="Addresss" EntitySet="Addressses" />
           </AssociationSet>
           <AssociationSet Name="FK_Addresss_Locality" Association="Self.FK_Addresss_Locality">
-            <End Role="Locality" EntitySet="Locality" />
-            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Locality" EntitySet="Localities" />
+            <End Role="Addresss" EntitySet="Addressses" />
           </AssociationSet>
           <AssociationSet Name="FK_Addresss_Voivodeship" Association="Self.FK_Addresss_Voivodeship">
-            <End Role="Voivodeship" EntitySet="Voivodeship" />
-            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Voivodeship" EntitySet="Voivodeships" />
+            <End Role="Addresss" EntitySet="Addressses" />
           </AssociationSet>
           <AssociationSet Name="FK_Customer_Addresss" Association="Self.FK_Customer_Addresss">
-            <End Role="Addresss" EntitySet="Addresss" />
-            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Addresss" EntitySet="Addressses" />
+            <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
           <AssociationSet Name="FK_Performer_Addresss" Association="Self.FK_Performer_Addresss">
-            <End Role="Addresss" EntitySet="Addresss" />
-            <End Role="Performer" EntitySet="Performer" />
+            <End Role="Addresss" EntitySet="Addressses" />
+            <End Role="Performer" EntitySet="Performers" />
           </AssociationSet>
           <AssociationSet Name="FK_PODGiK_Addresss" Association="Self.FK_PODGiK_Addresss">
-            <End Role="Addresss" EntitySet="Addresss" />
-            <End Role="PODGiK" EntitySet="PODGiK" />
+            <End Role="Addresss" EntitySet="Addressses" />
+            <End Role="PODGiK" EntitySet="PODGiKs" />
           </AssociationSet>
           <AssociationSet Name="FK_ChangeStageWork_Servicee" Association="Self.FK_ChangeStageWork_Servicee">
-            <End Role="Servicee" EntitySet="Servicee" />
-            <End Role="ChangeStageWork" EntitySet="ChangeStageWork" />
+            <End Role="Servicee" EntitySet="Servicees" />
+            <End Role="ChangeStageWork" EntitySet="ChangeStageWorks" />
           </AssociationSet>
           <AssociationSet Name="FK_ChangeStageWork_WorkStage" Association="Self.FK_ChangeStageWork_WorkStage">
-            <End Role="WorkStage" EntitySet="WorkStage" />
-            <End Role="ChangeStageWork" EntitySet="ChangeStageWork" />
+            <End Role="WorkStage" EntitySet="WorkStages" />
+            <End Role="ChangeStageWork" EntitySet="ChangeStageWorks" />
           </AssociationSet>
           <AssociationSet Name="FK_Servicee_Customer" Association="Self.FK_Servicee_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Servicee" EntitySet="Servicee" />
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Servicee" EntitySet="Servicees" />
           </AssociationSet>
           <AssociationSet Name="FK_GeodeticPoint_StateOfPoint" Association="Self.FK_GeodeticPoint_StateOfPoint">
-            <End Role="StateOfPoint" EntitySet="StateOfPoint" />
-            <End Role="GeodeticPoint" EntitySet="GeodeticPoint" />
+            <End Role="StateOfPoint" EntitySet="StateOfPoints" />
+            <End Role="GeodeticPoint" EntitySet="GeodeticPoints" />
           </AssociationSet>
           <AssociationSet Name="FK_Servicee_Performer" Association="Self.FK_Servicee_Performer">
-            <End Role="Performer" EntitySet="Performer" />
-            <End Role="Servicee" EntitySet="Servicee" />
+            <End Role="Performer" EntitySet="Performers" />
+            <End Role="Servicee" EntitySet="Servicees" />
           </AssociationSet>
           <AssociationSet Name="FK_Servicee_PODGiK" Association="Self.FK_Servicee_PODGiK">
-            <End Role="PODGiK" EntitySet="PODGiK" />
-            <End Role="Servicee" EntitySet="Servicee" />
+            <End Role="PODGiK" EntitySet="PODGiKs" />
+            <End Role="Servicee" EntitySet="Servicees" />
           </AssociationSet>
           <AssociationSet Name="FK_Servicee_TypeService" Association="Self.FK_Servicee_TypeService">
-            <End Role="TypeService" EntitySet="TypeService" />
-            <End Role="Servicee" EntitySet="Servicee" />
+            <End Role="TypeService" EntitySet="TypeServices" />
+            <End Role="Servicee" EntitySet="Servicees" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -807,9 +785,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SDA_EndProjModelStoreContainer" CdmEntityContainer="SDA_EndProjContext1">
-          <EntitySetMapping Name="Addresss">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.Addresss">
+        <EntityContainerMapping StorageEntityContainer="MVC4DataBaseModelStoreContainer" CdmEntityContainer="MVC4DataBaseEntities">
+          <EntitySetMapping Name="Addressses">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.Addresss">
               <MappingFragment StoreEntitySet="Addresss">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdVoivodeship" ColumnName="IdVoivodeship" />
@@ -822,8 +800,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChangeStageWork">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.ChangeStageWork">
+          <EntitySetMapping Name="ChangeStageWorks">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.ChangeStageWork">
               <MappingFragment StoreEntitySet="ChangeStageWork">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SinceWhen" ColumnName="SinceWhen" />
@@ -834,8 +812,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Commune">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.Commune">
+          <EntitySetMapping Name="Communes">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.Commune">
               <MappingFragment StoreEntitySet="Commune">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -843,8 +821,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="County">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.County">
+          <EntitySetMapping Name="Counties">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.County">
               <MappingFragment StoreEntitySet="County">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -852,8 +830,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customer">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.Customer">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -863,8 +841,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GeodeticPoint">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.GeodeticPoint">
+          <EntitySetMapping Name="GeodeticPoints">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.GeodeticPoint">
               <MappingFragment StoreEntitySet="GeodeticPoint">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
@@ -875,8 +853,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Locality">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.Locality">
+          <EntitySetMapping Name="Localities">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.Locality">
               <MappingFragment StoreEntitySet="Locality">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -884,8 +862,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Performer">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.Performer">
+          <EntitySetMapping Name="Performers">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.Performer">
               <MappingFragment StoreEntitySet="Performer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -896,8 +874,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PODGiK">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.PODGiK">
+          <EntitySetMapping Name="PODGiKs">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.PODGiK">
               <MappingFragment StoreEntitySet="PODGiK">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -907,8 +885,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Servicee">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.Servicee">
+          <EntitySetMapping Name="Servicees">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.Servicee">
               <MappingFragment StoreEntitySet="Servicee">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdPerformer" ColumnName="IdPerformer" />
@@ -921,43 +899,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="StateOfPoint">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.StateOfPoint">
+          <EntitySetMapping Name="StateOfPoints">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.StateOfPoint">
               <MappingFragment StoreEntitySet="StateOfPoint">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TypeService">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.TypeService">
+          <EntitySetMapping Name="TypeServices">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.TypeService">
               <MappingFragment StoreEntitySet="TypeService">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Voivodeship">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.Voivodeship">
+          <EntitySetMapping Name="Voivodeships">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.Voivodeship">
               <MappingFragment StoreEntitySet="Voivodeship">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WorkStage">
-            <EntityTypeMapping TypeName="SDA_EndProjModel.WorkStage">
+          <EntitySetMapping Name="WorkStages">
+            <EntityTypeMapping TypeName="MVC4DataBaseModel.WorkStage">
               <MappingFragment StoreEntitySet="WorkStage">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -978,7 +945,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

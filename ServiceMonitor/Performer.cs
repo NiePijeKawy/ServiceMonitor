@@ -17,7 +17,7 @@ namespace ServiceMonitor
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Performer()
         {
-            this.Servicee = new HashSet<Servicee>();
+            this.Servicees = new HashSet<Servicee>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace ServiceMonitor
     
         public virtual Addresss Addresss { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servicee> Servicee { get; set; }
+        public virtual ICollection<Servicee> Servicees { get; set; }
     }
 }

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ServiceMonitor.Models.Performer.PerformerGenerelListServices>
+@{
+    ViewBag.Title = "WorkList2";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2 class="title" style="text-align:center">Lista prac geodezyjnych</h2>
+
+<div class="" style="margin-top:5%">
+    <table class="table" style="width:80%;margin:auto; table-layout:fixed">
+        <thead>
+            <tr>
+                <th style="border:none 0; width:8%">Imie</th>
+                <th style="border:none 0; width:8%">Nazwisko</th>
+                <th style="border:none 0; width:12%">Numer telefonu</th>
+                <th style="border:none 0; width:20%">Rodzaj usługi</th>
+                <th style="border:none 0; width:8%">Cena</th>
+                <th style="border:none 0; width:20%">Aktualny status</th>
+                <th style="border:none 0; width:8%"></th>
+                <th style="border:none 0; width:8%"></th>
+                <th style="border:none 0; width:8%"></th>
+            </tr>
+        </thead> 
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr style="border-top:  2px solid #575757;">
+                        <td>@item.CustomerName</td>
+                        <td>@item.CustomerLastName</td>
+                        <td>@item.CustomerPhoneNumber</td>
+                        <td>@item.KindWork</td>
+                        <td>@item.Price</td>
+                        <td>@item.CurrentStatus</td>
+                        <td>
+                            <button class="transparent border" style="color:black">@Html.ActionLink("Edit", "Edit", "Performer", new { id = item.Id }, new { style = "color:black" }) </button>
+                        </td>
+                        @*<td>
+                            <button>@Html.ActionLink("usuń", "Delete", "Performer", new { id = item.Id }, null) </button>
+
+
+                        </td>*@
+                        <td>
+                            @using (Html.BeginForm("Delete", "Performer"))
+                            {
+                                @Html.Hidden("id", @item.Id);
+                                <button class="transparent border" style="color:black" type="submit">Usuń </button>
+                            }
+                        </td>
+                        <td>
+                            <button class="transparent border" style="color:black">@Html.ActionLink("szczególy", "Details", "Performer", new { id = item.Id }, new { style = "color:black" }) </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr style="border-top:2px solid #575757;">
+                <td colspan="2"><button class="btn transparent border" style="color:blue"> @Html.ActionLink("Dodaj nowego klienta", "AddClient", "Performer", new { style = "color:black" })</button></td>
+                <td colspan="7"><button class="btn transparent border" style="color:blue"> @Html.ActionLink("Dodaj nową usługę", "AddServices", "Performer", new { style = "color:black" })</button></td>
+
+            </tr>
+        </tfoot>
+
+    </table>
+
+</div>

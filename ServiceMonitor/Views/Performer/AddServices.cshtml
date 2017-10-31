@@ -2,18 +2,186 @@
 
 @{
     ViewBag.Title = "AddServices";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h2>AddServices</h2>
+<h2 class="title" style="text-align:center">Dodawanie nowego zlecenia</h2>
 
 
-<div class="container">
+<div class="container" style="margin-top:5%">
     @using (Html.BeginForm("AddServices"))
     {
-        <div class="form-group">
-            @Html.LabelFor(x=>x.IdCustomer,"Klient")
-            @Html.DropDownListFor(x=>x.IdCustomer, new SelectList(Model.Customers,"Id","DisplayName"),"Wybierz")
-        </div>
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.IdCustomer, "Klient", new { style = "font-weight: bold;" })
+                        @Html.DropDownListFor(x => x.IdCustomer, new SelectList(Model.Customers, "Id", "DisplayName"), "Wybierz", new { @class = "form-control transparent" })
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.IdVoivodership, "Wojewodzctwo", new { style = "font-weight: bold;" })
+                        @Html.DropDownListFor(x => x.IdVoivodership, new SelectList(Model.Voivoderships, "Id", "DisplayName"), "Wybierz ", new { @class = "form-control transparent" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Price, "Cena usługi", new { style = "font-weight: bold;" })
+                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control transparent" })
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.IdCounty, "Powiat", new { style = "font-weight: bold;" })
+                        @Html.DropDownListFor(x => x.IdCounty, Enumerable.Empty<SelectListItem>(), "wybierz", new { @class = "form-control transparent" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.IdCustomer, "Rodzaj pracy geodezyjnej", new { style = "font-weight: bold;" })
+                        @Html.DropDownListFor(x => x.IdType, new SelectList(Model.Types, "Id", "DisplayName"), "Wybierz", new { @class = "form-control transparent", style = "max-width: 550px;  width:550px !important" })
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.IdCommune, "Gmina", new { style = "font-weight: bold;" })
+                        @Html.DropDownListFor(x => x.IdCommune, Enumerable.Empty<SelectListItem>(), "Wybierz ", new { @class = "form-control transparent" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>                    
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.IdPodgik, "Starostwo powiatowe", new { style = "font-weight: bold;" })
+                        @Html.DropDownListFor(x => x.IdPodgik, new SelectList(Model.Podgiks, "Id", "DisplayName"), "Wybierz", new { @class = "form-control transparent", style = "max-width: 550px;  width:550px !important" })
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.IdLocality, "Miejscowość", new { style = "font-weight: bold;" })
+                        @Html.DropDownListFor(x => x.IdLocality, Enumerable.Empty<SelectListItem>(), "Wybierz ", new { @class = "form-control transparent" })
+                    </div>
+                </td>
+            </tr>  
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Description, "Opis usługi", new { style = "font-weight: bold;" })
+                        @Html.TextBoxFor(x => x.Description, new { style = "font-weight: bold; max-width: 550px; width:550px", @class = "form-control transparent" })
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.PlotNumber, "Numer działki", new { style = "font-weight: bold;" })
+                        @Html.TextBoxFor(x => x.PlotNumber, new { @class = "form-control transparent" })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>&nbsp</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn transparent float-left">Zapisz</button>
+                    <button class="btn transparent float-right">@Html.ActionLink("Anuluj", "WorkList2", "Performer", new { style = "color:black" })</button>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 </div>
+
+
+
+<script>
+    $(document).ready(function() {
+
+        $("#IdVoivodership").change(function () {
+
+            $('#IdCounty').empty();
+            $('#IdCommune').empty();
+            $('#IdLocality').empty();
+
+            var value = $("#IdVoivodership").val();
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("GetCounty", "Performer")',
+                data: { idVoivodeship: value },
+                success: function(data) {
+
+                    var tmp = $("#IdCounty");
+                    for (var val in data) {
+                        $('<option />', { value: data[val].Id, text: data[val].DisplayName }).appendTo(tmp);
+                    }
+                },
+                error: function(data) { console.log("Error"); }
+            });
+        });
+
+            $("#IdCounty").change(function () {
+
+                $('#IdCommune').empty();
+                $('#IdLocality').empty();
+
+                var value = $("#IdCounty").val();
+                console.log(value);
+                $.ajax({
+                    type: 'get',
+                    url: '@Url.Action("GetCommune", "Performer")',
+                    data: { idCounty: value },
+                    success: function (data) {
+
+                        var tmp = $("#IdCommune");
+                        for (var val in data) {
+                            $('<option />', { value: data[val].Id, text: data[val].DisplayName }).appendTo(tmp);
+                        }
+
+                        tmp.trigger('change');//symuluje click
+                    },
+                    error: function (data) { console.log("Error"); }
+                });
+            });
+
+            $("#IdCommune").change(function () {
+
+                $('#IdLocality').empty();
+                var value = $("#IdCommune").val();
+                console.log(value);
+                $.ajax({
+                    type: 'get',
+                    url: '@Url.Action("GetLocality", "Performer")',
+                    data: { idCommune: value },
+                    success: function (data) {
+
+                        var tmp = $("#IdLocality");
+                        for (var val in data) {
+                            $('<option />', { value: data[val].Id, text: data[val].DisplayName }).appendTo(tmp);
+                        }
+                    },
+                    error: function (data) { console.log("Error"); }
+                });
+            });
+
+        });
+
+</script>

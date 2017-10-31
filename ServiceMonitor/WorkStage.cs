@@ -17,13 +17,13 @@ namespace ServiceMonitor
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public WorkStage()
         {
-            this.ChangeStageWork = new HashSet<ChangeStageWork>();
+            this.ChangeStageWorks = new HashSet<ChangeStageWork>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChangeStageWork> ChangeStageWork { get; set; }
+        public virtual ICollection<ChangeStageWork> ChangeStageWorks { get; set; }
     }
 }

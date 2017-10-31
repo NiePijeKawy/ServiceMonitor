@@ -17,7 +17,7 @@ namespace ServiceMonitor
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Locality()
         {
-            this.Addresss = new HashSet<Addresss>();
+            this.Addressses = new HashSet<Addresss>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace ServiceMonitor
         public Nullable<int> CommuneCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Addresss> Addresss { get; set; }
+        public virtual ICollection<Addresss> Addressses { get; set; }
     }
 }

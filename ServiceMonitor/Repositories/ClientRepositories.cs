@@ -4,29 +4,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ServiceMonitor.Models.Client;
+using ServiceMonitor.Repositories.Interface;
 
 namespace ServiceMonitor.Repositories
 {
     public class ClientRepositories : IClientRepositories
     {
-        private readonly SDA_EndProjContext _dbContext;
+        //private readonly MVC4DataBaseEntities _dbContext;
 
-        public ClientRepositories(SDA_EndProjContext dbContext)
+        //public ClientRepositories(MVC4DataBaseEntities dbContext)
+        //{
+        //    _dbContext = dbContext;
+        //}
+
+        private readonly SDA_EndProjEntitiesLocalHp _dbContext;
+
+        public ClientRepositories(SDA_EndProjEntitiesLocalHp dbContext)
         {
             _dbContext = dbContext;
         }
 
         public bool CheckClient(ClientGridViewModel model)
         {
-            return _dbContext.Customer.Any(x =>
+            return _dbContext.Customers.Any(x =>
                 x.Name == model.Name &&
                 x.LastName == model.LastName &&
                 x.PhoneNumber == model.PhoneNumber);
         }
+        public ClientGridViewModel CheckClient2(ClientGridViewModel model)
+        {
+            
+
+            var result = _dbContext.Customers
+                .Where(x =>
+                    x.Name == model.Name &&
+                    x.LastName == model.LastName &&
+                    x.PhoneNumber == model.PhoneNumber)
+                .Select(c => new ClientGridViewModel
+                {
+                    Id = c.Id,
+                    LastName = c.LastName,
+                    Name = c.Name,
+                    PhoneNumber = c.PhoneNumber
+                }).FirstOrDefault();             
+
+            return result;            
+        }
+
+
 
         public IEnumerable<ClientServicesDetailsViewModel> GetDetails(int id)
         {
-            var result = _dbContext.ChangeStageWork
+            var result = _dbContext.ChangeStageWorks
                 .Where(x => x.IdService == id)
                 .Select(x => new ClientServicesDetailsViewModel
                 {
@@ -43,7 +72,7 @@ namespace ServiceMonitor.Repositories
 
         public IEnumerable<ClientListServicesViewModel> GetListServices(ClientGridViewModel model)
         {
-            var result = _dbContext.Servicee
+            var result = _dbContext.Servicees
                 .Where(x => x.Customer.Name == model.Name &&
                             x.Customer.LastName == model.LastName &&
                             x.Customer.PhoneNumber == model.PhoneNumber)
@@ -51,8 +80,8 @@ namespace ServiceMonitor.Repositories
                 {
                     NameServices = x.TypeService.Name,
                     CompanyName = x.Performer.Name,
-                    CurrentStatus =
-                        x.ChangeStageWork.OrderByDescending(d => d.Id).FirstOrDefault().WorkStage
+                    CurrentStatus = 
+                        x.ChangeStageWorks.OrderByDescending(d => d.Id).FirstOrDefault().WorkStage
                             .Name, //Single(a => a.UntilWhen == null).WorkStage.Name,
                     Price = (double) x.Price,
                     Id = x.Id
@@ -60,10 +89,28 @@ namespace ServiceMonitor.Repositories
 
             return result;
         }
+        public IEnumerable<ClientListServicesViewModel> GetListServices2(int id)
+        {
+            var result = _dbContext.Servicees
+                .Where(x => x.Customer.Id == id)
+                .Select(x => new ClientListServicesViewModel
+                {
+                    NameServices = x.TypeService.Name,
+                    CompanyName = x.Performer.Name,
+                    CurrentStatus =
+                        x.ChangeStageWorks.OrderByDescending(d => d.Id).FirstOrDefault().WorkStage
+                            .Name, //Single(a => a.UntilWhen == null).WorkStage.Name,
+                    Price = (double)x.Price,
+                    Id = x.Id
+                }).ToList();
+
+            return result;
+        }
+
 
         public ClientServicesDetailsGeneralModel GetGeneralInfo(int id)
         {
-            var result = _dbContext.Servicee
+            var result = _dbContext.Servicees
                 .Where(x => x.Id == id)
                 .Select(x => new ClientServicesDetailsGeneralModel
                 {
@@ -77,5 +124,7 @@ namespace ServiceMonitor.Repositories
 
             return result;
         }
+
+  
     }
 }

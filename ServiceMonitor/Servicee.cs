@@ -17,7 +17,7 @@ namespace ServiceMonitor
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Servicee()
         {
-            this.ChangeStageWork = new HashSet<ChangeStageWork>();
+            this.ChangeStageWorks = new HashSet<ChangeStageWork>();
         }
     
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace ServiceMonitor
         public int IdAddress { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChangeStageWork> ChangeStageWork { get; set; }
+        public virtual ICollection<ChangeStageWork> ChangeStageWorks { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Performer Performer { get; set; }
         public virtual PODGiK PODGiK { get; set; }

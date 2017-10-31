@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="089500dd615c4b23a802e06025d0e797" Name="Diagram1">
+        <EntityTypeShape EntityType="MVC4DataBaseModel.Addresss" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.ChangeStageWork" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.Commune" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.County" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.Customer" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.GeodeticPoint" Width="1.5" PointX="12" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.Locality" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.Performer" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.PODGiK" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.Servicee" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.StateOfPoint" Width="1.5" PointX="9.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.TypeService" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.Voivodeship" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4DataBaseModel.WorkStage" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Addresss_Commune" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Addresss_County" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Addresss_Locality" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Addresss_Voivodeship" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Customer_Addresss" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Performer_Addresss" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_PODGiK_Addresss" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_ChangeStageWork_Servicee" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_ChangeStageWork_WorkStage" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Servicee_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_GeodeticPoint_StateOfPoint" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Servicee_Performer" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Servicee_PODGiK" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC4DataBaseModel.FK_Servicee_TypeService" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

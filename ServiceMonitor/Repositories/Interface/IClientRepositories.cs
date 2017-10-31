@@ -14,5 +14,7 @@ namespace ServiceMonitor.Repositories
         IEnumerable<ClientServicesDetailsViewModel> GetDetails(int id);
 
         ClientServicesDetailsGeneralModel GetGeneralInfo(int id);
+        ClientGridViewModel CheckClient2(ClientGridViewModel model);
+        IEnumerable<ClientListServicesViewModel> GetListServices2(int id);
     }
 }

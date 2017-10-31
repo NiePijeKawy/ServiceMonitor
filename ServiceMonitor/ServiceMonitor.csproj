@@ -57,11 +57,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -137,8 +137,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -148,14 +148,27 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -221,55 +234,75 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addresss.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ChangeStageWork.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="Commune.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CientController.cs" />
+    <Compile Include="Controllers\Home2Controller.cs" />
+    <Compile Include="Controllers\HomeApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PerformerApiController.cs" />
     <Compile Include="Controllers\PerformerController.cs" />
     <Compile Include="County.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="GeodeticPoint.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ControllerInstaller.cs" />
     <Compile Include="Infrastructure\ServicesInstaller.cs" />
+    <Compile Include="Infrastructure\WindsorHttpControllerFactory.cs" />
     <Compile Include="Locality.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLocalHp.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelLocalHp.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLocalHp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLocalHp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelLocalHp.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSomee.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSomee.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSomee.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSomee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSomee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSomee.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Performer\IdNameViewModel.cs" />
@@ -282,39 +315,54 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Performer\PerformerAddNewService.cs" />
     <Compile Include="Models\Performer\PerformerCreateNewCustomer.cs" />
+    <Compile Include="Models\Performer\PerformerDetailsInfo.cs" />
+    <Compile Include="Models\Performer\PerformerDetailsViewModel.cs" />
+    <Compile Include="Models\Performer\PerformerDetailsWorkState.cs" />
+    <Compile Include="Models\Performer\PerformerEditViewModel.cs" />
     <Compile Include="Models\Performer\PerformerGenerelListServices.cs" />
     <Compile Include="Models\Performer\PerformerRejestractionViewModel.cs" />
     <Compile Include="Models\Performer\PerformerWelcomeViewModel.cs" />
     <Compile Include="Performer.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="PODGiK.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Principal\ICustomerPrincipal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\ClientRepositories.cs" />
     <Compile Include="Repositories\Interface\IClientRepositories.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="Repositories\Interface\IPerformerRepositories.cs" />
     <Compile Include="Repositories\PerformerRepositories.cs" />
+    <Compile Include="Service References\ServiceReferenceSemVITICw\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Servicee.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="StateOfPoint.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeService.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="Voivodeship.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
     <Compile Include="WorkStage.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+      <DependentUpon>ModelLocalHp.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -324,16 +372,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DataBaseModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-      <LastGenOutput>DataBaseModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataBaseModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-      <LastGenOutput>DataBaseModel.cs</LastGenOutput>
-    </Content>
+    <Content Include="Content\Images\tlo2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -346,14 +385,44 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <EntityDeploy Include="DataBaseModel.edmx">
+    <EntityDeploy Include="ModelSomee.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataBaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelSomee.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DataBaseModel.edmx.diagram">
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+    <Content Include="ModelLocalHp.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelLocalHp.edmx</DependentUpon>
+      <LastGenOutput>ModelLocalHp.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="ModelLocalHp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelLocalHp.edmx</DependentUpon>
+      <LastGenOutput>ModelLocalHp.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelSomee.edmx.diagram">
+      <DependentUpon>ModelSomee.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="ModelLocalHp.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelLocalHp.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ModelLocalHp.edmx.diagram">
+      <DependentUpon>ModelLocalHp.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\MVCInz.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="ModelSomee.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSomee.edmx</DependentUpon>
+      <LastGenOutput>ModelSomee.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelSomee.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSomee.edmx</DependentUpon>
+      <LastGenOutput>ModelSomee.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\tlo2.jpg" />
+    <None Include="Resources\tlo3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -371,7 +440,16 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <None Include="Service References\ServiceReferenceSemVITICw\AccesToDb.disco" />
+    <None Include="Service References\ServiceReferenceSemVITICw\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReferenceSemVITICw\configuration.svcinfo" />
+    <None Include="Service References\ServiceReferenceSemVITICw\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -405,14 +483,29 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Cient\Index.cshtml" />
-    <Content Include="Views\Cient\ListOfServices.cshtml" />
-    <Content Include="Views\Cient\Details.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\ListOfServices.cshtml" />
+    <Content Include="Views\Client\Details.cshtml" />
     <Content Include="Views\Performer\Index.cshtml" />
     <Content Include="Views\Performer\WorkList.cshtml" />
     <Content Include="Views\Performer\Registration.cshtml" />
     <Content Include="Views\Performer\AddClient.cshtml" />
     <Content Include="Views\Performer\AddServices.cshtml" />
+    <Content Include="Views\Client\ListOfServices2.cshtml" />
+    <Content Include="Views\Performer\WorkList2.cshtml" />
+    <Content Include="Views\Performer\Details.cshtml" />
+    <Content Include="Views\Performer\Edit.cshtml" />
+    <None Include="Service References\ServiceReferenceSemVITICw\AccesToDb.wsdl" />
+    <Content Include="Service References\ServiceReferenceSemVITICw\ServiceMonitor.ServiceReferenceSemVITICw.CheckClient2Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReferenceSemVITICw\ServiceMonitor.ServiceReferenceSemVITICw.ClientGridViewModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReferenceSemVITICw\ServiceMonitor.ServiceReferenceSemVITICw.HelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -425,6 +518,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReferenceSemVITICw\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

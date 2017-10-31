@@ -18,9 +18,15 @@ namespace ServiceMonitor.Infrastructure
 
             container.Register(Component.For<IPerformerRepositories>().ImplementedBy<PerformerRepositories>());
 
-            container.Register(Component.For<SDA_EndProjContext>());
+        //  container.Register(Component.For<SDA_EndProjContext>());
 
-  
+            container.Register(Component.For<MVC4DataBaseEntities>());
+
+            container.Register(Component.For<SDA_EndProjEntitiesLocalHp>());            
+
+     //       container.Register(Component.For<MVC4DataBaseEntitiesDD>());
+
+
 
         }
     }

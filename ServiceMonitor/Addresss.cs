@@ -17,9 +17,9 @@ namespace ServiceMonitor
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Addresss()
         {
-            this.Customer = new HashSet<Customer>();
-            this.Performer = new HashSet<Performer>();
-            this.PODGiK = new HashSet<PODGiK>();
+            this.Customers = new HashSet<Customer>();
+            this.Performers = new HashSet<Performer>();
+            this.PODGiKs = new HashSet<PODGiK>();
         }
     
         public int Id { get; set; }
@@ -36,10 +36,10 @@ namespace ServiceMonitor
         public virtual Locality Locality { get; set; }
         public virtual Voivodeship Voivodeship { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customer { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Performer> Performer { get; set; }
+        public virtual ICollection<Performer> Performers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PODGiK> PODGiK { get; set; }
+        public virtual ICollection<PODGiK> PODGiKs { get; set; }
     }
 }
