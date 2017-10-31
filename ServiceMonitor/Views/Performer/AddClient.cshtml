@@ -26,6 +26,7 @@
                         @Html.DropDownListFor(x => x.VoivodershipId, new SelectList(Model.Voivoderships, "Id", "DisplayName"), "Wybierz ", new { value = 0, @class = "form-control transparent" })
                     </div>
                 </td>
+
                 <td>
                     <div class="form-group">
                         @Html.LabelFor(x => x.Street, "Ulica", new { style = "font-weight: bold;" })
